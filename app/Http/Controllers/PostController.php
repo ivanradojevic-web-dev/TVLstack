@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return new PostCollection($posts);  //another way to retrieve collection
+        return new PostCollection(auth()->user()->posts);  //another way to retrieve collection
     }
 
     public function store()

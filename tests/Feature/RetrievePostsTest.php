@@ -16,7 +16,7 @@ class RetrievePostsTest extends TestCase
         $this->withoutExceptionHandling();
         
         $this->actingAs($user = factory(\App\User::class)->create(), 'api');
-        $posts = factory(\App\Post::class, 2)->create();
+        $posts = factory(\App\Post::class, 2)->create(["user_id" => $user->id]);
 
         $response = $this->get('/api/posts');
 
@@ -50,6 +50,27 @@ class RetrievePostsTest extends TestCase
 
             "links" => [
                     "self" => url("/posts"),
+            ]    
+
+            ]);
+    }
+
+    /** @test */
+    public function a_user_can_only_retrieve_their_posts()
+    {
+        //$this->withoutExceptionHandling();
+        
+        $this->actingAs($user = factory(\App\User::class)->create(), 'api');
+        $posts = factory(\App\Post::class)->create();
+
+        $response = $this->get('/api/posts');
+
+        $response->assertStatus(200)
+            ->assertExactJson([
+
+            "data" => [], 
+            "links" => [
+                "self" => url("/posts"),
             ]    
 
             ]);
