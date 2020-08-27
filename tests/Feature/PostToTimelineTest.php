@@ -40,8 +40,15 @@ class PostToTimelineTest extends TestCase
                     "post_id" => $post->id,
                     "attributes" => [
                         "body" => "Testing Body",
+                        "posted_by" => [
+                            "data" => [
+                                "attributes" => [
+                                    "name" => $user->name,
+                                ]
+                            ]
+                        ]
                     ]
-                ],
+                ],   
                 "links" => [
                     "self" => url("/posts/".$post->id),
                 ]

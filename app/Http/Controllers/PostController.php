@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\Post as PostResource; 
 
 class PostController extends Controller
 {
@@ -16,17 +17,11 @@ class PostController extends Controller
         //$post = auth()->user()->posts()->create($data);
         $post = auth()->user()->posts()->create($data['data']['attributes']);	//testing
 
-    	return response([
-    		"data" => [
-                    "type" => "posts",
-                    "post_id" => $post->id,
-                    "attributes" => [
-                        "body" => $post->body,
-                    ]
-                ],
-                "links" => [
-                    "self" => url("/posts/".$post->id),
-                ]
-    	], 201);
+        return new PostResource($post);
+
+    	//return response([], 201);
     }
 }
+
+// new PostResource($post);
+// PostResource::collection($post);
