@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\Post as PostResource; 
+use App\Http\Resources\Post as PostResource;
+use App\Http\Resources\PostCollection;
+use App\Post; 
 
 class PostController extends Controller
 {
+
+	public function index()
+    {
+        $posts = Post::all();
+
+        return new PostCollection($posts);  //another way to retrieve collection
+    }
+
     public function store()
     {
         $data = request()->validate([
