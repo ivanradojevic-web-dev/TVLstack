@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\ReversScope;
 
 class Post extends Model
 {
@@ -14,4 +15,10 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
+    //protected static function booted()	// ::all = all->orderBy("id", "desc")
+    //{
+    //    static::addGlobalScope(new ReversScope);
+    //}
 }
