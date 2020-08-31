@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\User;
+use Carbon\Carbon;
 
 class Post extends JsonResource
 {
@@ -22,6 +23,8 @@ class Post extends JsonResource
                     "attributes" => [
                         "posted_by" => new User($this->user),   //new User from resource(relationship from model)
                         "body" => $this->body,
+                        "posted_at" => $this->created_at->diffForHumans(),
+                        "image" => $this->image,
                     ]
             ],
             "links" => [
