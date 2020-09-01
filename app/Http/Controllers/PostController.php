@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Post as PostResource;
 use App\Http\Resources\PostCollection;
 use App\Post; 
+use App\User;
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return new PostCollection(auth()->user()->posts);  //another way to retrieve collection
+        return new PostCollection($posts);  //another way to retrieve collection
     }
 
     public function store()
@@ -30,6 +31,14 @@ class PostController extends Controller
         return new PostResource($post);
 
     	//return response([], 201);
+    }
+
+
+    public function userposts(User $user)
+    {
+        $posts = $user->posts;
+
+        return new PostCollection($posts);  //another way to retrieve collection
     }
 }
 
