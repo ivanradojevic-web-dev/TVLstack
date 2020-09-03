@@ -42,4 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
+
+    public function friends()
+    {
+        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id',);
+        // friends table, columns foreign-pk friend id, related-pk user_id
+    }
 }
