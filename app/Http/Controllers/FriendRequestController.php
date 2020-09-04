@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Friend as FriendResource;
+use App\Exceptions\UserNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class FriendRequestController extends Controller
 {

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class Friend extends JsonResource
 {
@@ -19,7 +20,7 @@ class Friend extends JsonResource
                     "type" => "friend-request",
                     "friend_request_id" => $this->id,
                     "attributes" => [
-                        "confirmed_at" => $this->confirmed_at,
+                        "confirmed_at" => optional($this->confirmed_at)->diffForHumans(),   //because may be nullable
                     ]
             ],
             "links" => [

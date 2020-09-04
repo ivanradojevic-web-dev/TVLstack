@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function() {
 	Route::get('/auth-user', 'AuthUserController@show');
 
     Route::apiResource('friend-request', 'FriendRequestController');
+    Route::apiResource('friend-request-response', 'FriendRequestResponseController');
 
 	Route::get('/posts', 'PostController@index');
     Route::post('/posts', 'PostController@store');
