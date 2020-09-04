@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\Friend as FriendResource;
 
 class FriendRequestController extends Controller
 {
@@ -24,7 +25,24 @@ class FriendRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'friend_id' => '',   //testing
+        ]);
+
+        User::findOrFail($data['friend_id'])->friends()->attach(auth()->user());
+
+        try {
+            User::findOrFail($data['friend_id'])
+                ->friends()->attach(auth()->user());
+        } catch (ModelNotFoundException $e) {
+            throw new UserNotFoundException();
+        }
+
+        return new FriendResource(
+            Friend::where("user_id", auth()->user()->id)
+                ->where("friend_id", $data['friend_id'])
+                ->first()
+        );
     }
 
     /**
