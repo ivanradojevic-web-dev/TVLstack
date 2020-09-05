@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Friend;
+use App\Friend;
 
 class User extends JsonResource
 {
@@ -20,6 +22,7 @@ class User extends JsonResource
                     "user_id" => $this->id,
                     "attributes" => [
                         "name" => $this->name,
+                        "friendship" => new Friend(Friend::friendship($this->id)),  // 
                     ]
             ],
             "links" => [
