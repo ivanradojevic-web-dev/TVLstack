@@ -2299,6 +2299,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38584,7 +38590,9 @@ var render = function() {
               _vm._v(_vm._s(_vm.user.data.attributes.name))
             ])
           ]
-        )
+        ),
+        _vm._v(" "),
+        _vm._m(2)
       ]),
       _vm._v(" "),
       _vm._l(_vm.posts.data, function(post) {
@@ -38623,6 +38631,23 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "absolute flex items-center bottom-0 right-0 mb-4  mr-12 z-20"
+      },
+      [
+        _c("button", { staticClass: "py-1 px-3 border-gray-400 rounded" }, [
+          _vm._v("Add Friend")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -55800,7 +55825,7 @@ var state = {
   userStatus: null
 };
 var getters = {
-  //getteri nam isporučuju "istinu"
+  //getteri nam isporučuju "istinu" i koristimo ih kao global
   authUser: function authUser(state) {
     return state.user;
   }
